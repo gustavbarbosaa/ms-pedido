@@ -63,6 +63,8 @@ public class PedidoService {
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundExecption(PEDIDO_NAO_ENCONTRADO));
 
+        ProdutoResponseDTO produto = produtoClient.buscarProdutoPorId(pedidoRequestDTO.produtoId());
+
         pedido.setProdutoId(pedidoRequestDTO.produtoId());
         pedido.setQuantidade(pedidoRequestDTO.quantidade());
         pedido.setDataPedido(LocalDateTime.now());
